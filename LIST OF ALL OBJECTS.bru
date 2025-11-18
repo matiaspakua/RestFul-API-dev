@@ -2,6 +2,9 @@ meta {
   name: LIST OF ALL OBJECTS
   type: http
   seq: 1
+  tags: [
+    nominal
+  ]
 }
 
 get {
@@ -84,4 +87,148 @@ docs {
   3. Que los tipos de cada propiedad sean correctos.
   4. Que se manejen casos cuando la propiedad "data" sea null.
   5. Valores específicos de algunos elementos si se desea.
+}
+
+example {
+  name: GET ALL OBJECTS EXAMPLE
+  
+  request: {
+    url: https://api.restful-api.dev/objects
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      date: Tue, 18 Nov 2025 19:02:06 GMT
+      content-type: application/json
+      transfer-encoding: chunked
+      connection: keep-alive
+      server: cloudflare
+      nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      cf-cache-status: DYNAMIC
+      report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=5WezpwvIAwQcrpwXtTXEFTA5yJo6QhV0w3yexboCnZ9KgbtKCJP5ChLtyP5R9%2BUEp8f4%2BgC2VmS9nyeTCU9hKQLWg51yZb3okHuCyBu9b74vmZI%3D"}]}
+      cf-ray: 9a09b8615ddee93f-MAD
+      alt-svc: h3=":443"; ma=86400
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "id": "1",
+            "name": "Google Pixel 6 Pro",
+            "data": {
+              "color": "Cloudy White",
+              "capacity": "128 GB"
+            }
+          },
+          {
+            "id": "2",
+            "name": "Apple iPhone 12 Mini, 256GB, Blue",
+            "data": null
+          },
+          {
+            "id": "3",
+            "name": "Apple iPhone 12 Pro Max",
+            "data": {
+              "color": "Cloudy White",
+              "capacity GB": 512
+            }
+          },
+          {
+            "id": "4",
+            "name": "Apple iPhone 11, 64GB",
+            "data": {
+              "price": 389.99,
+              "color": "Purple"
+            }
+          },
+          {
+            "id": "5",
+            "name": "Samsung Galaxy Z Fold2",
+            "data": {
+              "price": 689.99,
+              "color": "Brown"
+            }
+          },
+          {
+            "id": "6",
+            "name": "Apple AirPods",
+            "data": {
+              "generation": "3rd",
+              "price": 120
+            }
+          },
+          {
+            "id": "7",
+            "name": "Apple MacBook Pro 16",
+            "data": {
+              "year": 2019,
+              "price": 1849.99,
+              "CPU model": "Intel Core i9",
+              "Hard disk size": "1 TB"
+            }
+          },
+          {
+            "id": "8",
+            "name": "Apple Watch Series 8",
+            "data": {
+              "Strap Colour": "Elderberry",
+              "Case Size": "41mm"
+            }
+          },
+          {
+            "id": "9",
+            "name": "Beats Studio3 Wireless",
+            "data": {
+              "Color": "Red",
+              "Description": "High-performance wireless noise cancelling headphones"
+            }
+          },
+          {
+            "id": "10",
+            "name": "Apple iPad Mini 5th Gen",
+            "data": {
+              "Capacity": "64 GB",
+              "Screen size": 7.9
+            }
+          },
+          {
+            "id": "11",
+            "name": "Apple iPad Mini 5th Gen",
+            "data": {
+              "Capacity": "254 GB",
+              "Screen size": 7.9
+            }
+          },
+          {
+            "id": "12",
+            "name": "Apple iPad Air",
+            "data": {
+              "Generation": "4th",
+              "Price": "419.99",
+              "Capacity": "64 GB"
+            }
+          },
+          {
+            "id": "13",
+            "name": "Apple iPad Air",
+            "data": {
+              "Generation": "4th",
+              "Price": "519.99",
+              "Capacity": "256 GB"
+            }
+          }
+        ]
+      '''
+    }
+  }
 }
