@@ -10,6 +10,78 @@ get {
   auth: inherit
 }
 
+tests {
+  // Simulamos la respuesta de la API
+  const apiResponse = [
+    { "id": "1", "name": "Google Pixel 6 Pro", "data": { "color": "Cloudy White", "capacity": "128 GB" } },
+    { "id": "2", "name": "Apple iPhone 12 Mini, 256GB, Blue", "data": null },
+    { "id": "3", "name": "Apple iPhone 12 Pro Max", "data": { "color": "Cloudy White", "capacity GB": 512 } },
+    { "id": "4", "name": "Apple iPhone 11, 64GB", "data": { "price": 389.99, "color": "Purple" } },
+    { "id": "5", "name": "Samsung Galaxy Z Fold2", "data": { "price": 689.99, "color": "Brown" } },
+    { "id": "6", "name": "Apple AirPods", "data": { "generation": "3rd", "price": 120 } },
+    { "id": "7", "name": "Apple MacBook Pro 16", "data": { "year": 2019, "price": 1849.99, "CPU model": "Intel Core i9", "Hard disk size": "1 TB" } },
+    { "id": "8", "name": "Apple Watch Series 8", "data": { "Strap Colour": "Elderberry", "Case Size": "41mm" } },
+    { "id": "9", "name": "Beats Studio3 Wireless", "data": { "Color": "Red", "Description": "High-performance wireless noise cancelling headphones" } },
+    { "id": "10", "name": "Apple iPad Mini 5th Gen", "data": { "Capacity": "64 GB", "Screen size": 7.9 } },
+    { "id": "11", "name": "Apple iPad Mini 5th Gen", "data": { "Capacity": "254 GB", "Screen size": 7.9 } },
+    { "id": "12", "name": "Apple iPad Air", "data": { "Generation": "4th", "Price": "419.99", "Capacity": "64 GB" } },
+    { "id": "13", "name": "Apple iPad Air", "data": { "Generation": "4th", "Price": "519.99", "Capacity": "256 GB" } }
+  ];
+  
+  
+  test('should be an array', () => {
+    expect(apiResponse).to.be.an('array');
+  });
+  
+  test('each item should have id, name and data properties', () => {
+    apiResponse.forEach(item => {
+      expect(item).to.have.property('id').that.is.a('string');
+      expect(item).to.have.property('name').that.is.a('string');
+      expect(item).to.have.property('data');
+    });
+  });
+  
+  test('should allow data to be an object or null', () => {
+    apiResponse.forEach(item => {
+      expect(item.data === null || typeof item.data === 'object').to.be.true;
+    });
+  });
+  
+  test('check specific product details - example test cases', () => {
+    const product1 = apiResponse.find(p => p.id === "1");
+    expect(product1.data).to.include({ color: "Cloudy White", capacity: "128 GB" });
+  
+    const product2 = apiResponse.find(p => p.id === "2");
+    expect(product2.data).to.be.null;
+  
+    const product3 = apiResponse.find(p => p.id === "3");
+    expect(product3.data).to.have.property('capacity GB').that.is.a('number').and.equal(512);
+    });
+  
+  test('check that prices are numbers when present in data', () => {
+    apiResponse.forEach(item => {
+      if (item.data && item.data.price !== undefined) {
+        expect(item.data.price).to.be.a('number');
+      }
+    });
+  });
+}
+
 settings {
   encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  
+  
+  # Testing
+  
+  Para testear la respuesta de la API REST que contiene una lista de productos, podemos verificar aspectos como:
+  
+  1. Que la respuesta sea un array.
+  2. Que cada objeto tenga las propiedades esperadas (id, name, data).
+  3. Que los tipos de cada propiedad sean correctos.
+  4. Que se manejen casos cuando la propiedad "data" sea null.
+  5. Valores específicos de algunos elementos si se desea.
 }
